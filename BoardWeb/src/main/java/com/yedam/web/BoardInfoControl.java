@@ -18,13 +18,15 @@ public class BoardInfoControl implements Control {
 		// TODO Auto-generated method stub
 		
 		String bno = req.getParameter("bno");
+		String page = req.getParameter("page");
 		
 		BoardService svc = new BoardServiceImpl();
 		BoardVO vo = svc.getBoard(Integer.parseInt(bno)); //조회가능.
 		svc.addViewCnt(Integer.parseInt(bno)); //조회 카운트 증가.
 		
-		
 		req.setAttribute("result", vo);
+		req.setAttribute("page", page);
+			
 		
 		String path = "WEB-INF/board/board.jsp";
 		req.getRequestDispatcher(path).forward(req, resp);

@@ -13,16 +13,12 @@ public class BoardTest {
 	public static void main(String[] args) {
 	
 
-	BoardService svc = new BoardServiceImpl();
-	BoardVO vo = new BoardVO();
-	vo.setBoardNo((3));
-	vo.setTitle("adfdf");
-	vo.setContent("asdfsdf");
-		
-	if(svc.modifyBoard(vo)) {
-		System.out.println("성공");
-	}else {
-		System.out.println("실패");
-	}
+		BoardService svc = new BoardServiceImpl();
+		svc.boardList(3).forEach(board -> System.out.println(board));
+
+	
+	
+	
+	
 	}
 }

@@ -1,23 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="../includes/header.jsp"></jsp:include>
 
-<form action ="addBoard.do">
-<table class= "table">
-	<tr>
-		<th>제목</th><td><input type ="text" name="title"></td>
-	</tr>
-<tr>
-		<th>내용</th><td><textarea cols='50' rows='4' name="content"></textarea></td>
-	</tr>	
-	<tr>
-		<th>작성자</th><td><input type ="text" name="writer"></td>
-	</tr>
-	<tr align = center>
-		<td colspan ="2" ><input type ="submit"></td>
-	</tr>
+<form action="addBoard.do" method="post" enctype="multipart/form-data">
+	
+	<c:if test="${message != null}">
+		<p>${message}</p>
+	</c:if>
+	
+	<table class="table">
+		<tr>
+			<th>제목</th>
+			<td><input type="text" name="title"></td>
+		</tr>
+		<tr>
+			<th>내용</th>
+			<td><textarea cols='50' rows='4' name="content"></textarea></td>
+		</tr>
+		<tr>
+			<th>작성자</th>
+			<td><input type="text" name="writer" readonly value ="${logId }"></td>
+		</tr>
+		<tr>
+			<th>파일</th>
+			<td><input type="file" name="myImg"></td>
+		</tr>
+		<tr align=center>
+			<td colspan="2"><input type="submit"></td>
+		</tr>
 
-</table>
+	</table>
 </form>
 <jsp:include page="../includes/footer.jsp"></jsp:include>

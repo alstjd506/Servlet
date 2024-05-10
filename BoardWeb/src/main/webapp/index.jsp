@@ -7,8 +7,8 @@
 <title>index.jsp</title>
 </head>
 <body>
-	<h3>첫페이지</h3>
 	<a href= "main.do">메인컨트롤 이동</a>
+	<jsp:forward page='main.do'></jsp:forward>
 	
 </body>
 </html>

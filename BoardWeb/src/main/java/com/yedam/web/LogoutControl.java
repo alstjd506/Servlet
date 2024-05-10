@@ -5,25 +5,19 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.yedam.common.Control;
-import com.yedam.service.BoardService;
-import com.yedam.service.BoardServiceImpl;
-import com.yedam.vo.BoardVO;
 
-public class RemoveControl implements Control {
+public class LogoutControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		HttpSession session = req.getSession();
+		session.invalidate(); //기존의 session 객체 삭제.
 		
-		String bno = req.getParameter("bno");
-		String page = req.getParameter("page");
-		BoardService svc = new BoardServiceImpl();
-		
-		svc.deleteBoard(Integer.parseInt(bno));
-		resp.sendRedirect("main.do?page="+page);
-		
+		resp.sendRedirect("logForm.do");
 	}
 
 }

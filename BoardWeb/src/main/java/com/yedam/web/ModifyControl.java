@@ -20,6 +20,7 @@ public class ModifyControl implements Control {
 		String bno = req.getParameter("bno");
 		String title = req.getParameter("title");
 		String content = req.getParameter("content");
+		String page = req.getParameter("page");
 				
 		BoardService svc = new BoardServiceImpl();
 		BoardVO vo = new BoardVO();
@@ -29,7 +30,7 @@ public class ModifyControl implements Control {
 		
 		if(svc.modifyBoard(vo)) {
 			System.out.println("성공");
-			resp.sendRedirect("main.do");
+			resp.sendRedirect("main.do?page="+page);
 		}else {
 			System.out.println("실패");
 			resp.sendRedirect("modBardForm.do");
