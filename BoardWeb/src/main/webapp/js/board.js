@@ -59,14 +59,13 @@ function deleteRow(e){
 
 document.getElementById('addReply').addEventListener('click',function(e) {
 	let reply = document.getElementById('reply').value;
-	fetch('addReply.do?bno='+ bno +'&replyer='+ writer +'&reply='+ reply)
-	.then(resolve => resolve.json())
-	.then(result => {
-		if(result.retCode == 'OK'){
-			location.reload();
-		}
-		
-	})
-	.catch(err => console.log(err));
+	fetch('addReply.do?bno='+ bno + '&replyer=' + writer +'&reply='+ reply)
+		.then(resolve => resolve.json())
+		.then(result => {
+			if(result.retCode == 'OK'){
+				location.reload();
+			}
+		})
+		.catch(err => console.log(err));
 })
 
