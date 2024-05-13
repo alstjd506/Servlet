@@ -19,8 +19,8 @@ public class ModifyFormControl implements Control {
 		
 		String bno = req.getParameter("bno");
 		String page = req.getParameter("page");
-		
-		String sc = req.getParameter("serachCondition");
+	
+		String sc = req.getParameter("searchCondition");
 		String kw = req.getParameter("keyword");
 		
 		BoardService svc = new BoardServiceImpl();
@@ -28,7 +28,7 @@ public class ModifyFormControl implements Control {
 		
 		req.setAttribute("bno", vo);
 		req.setAttribute("page", page);
-		req.setAttribute("serachCondition", sc);
+		req.setAttribute("searchCondition", sc);
 		req.setAttribute("keyword", kw);
 		
 		String path = "WEB-INF/board/editBoard.jsp";

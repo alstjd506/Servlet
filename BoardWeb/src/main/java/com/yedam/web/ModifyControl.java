@@ -23,7 +23,7 @@ public class ModifyControl implements Control {
 		String content = req.getParameter("content");
 		String page = req.getParameter("page");
 		
-		String sc = req.getParameter("serachCondition");
+		String sc = req.getParameter("searchCondition");
 		String kw = req.getParameter("keyword");
 				
 		BoardService svc = new BoardServiceImpl();
@@ -32,10 +32,11 @@ public class ModifyControl implements Control {
 		vo.setBoardNo(Integer.parseInt(bno));
 		vo.setTitle(title);
 		vo.setContent(content);
+		System.out.println(sc);
 		
 		if(svc.modifyBoard(vo)) {
 			System.out.println("성공");
-			resp.sendRedirect("main.do?page="+page+"&serachCondition=" + sc + "&keyword=" + encodeKW );
+			resp.sendRedirect("main.do?page="+page+"&searchCondition=" + sc + "&keyword=" + encodeKW );
 		}else {
 			System.out.println("실패");
 			resp.sendRedirect("modBardForm.do");

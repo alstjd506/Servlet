@@ -28,7 +28,7 @@ public class MainControl implements Control {
 		
 		SearchVO search = new SearchVO();
 		String page = req.getParameter("page");
-		String sc = req.getParameter("serachCondition");
+		String sc = req.getParameter("searchCondition");
 		String kw = req.getParameter("keyword");
 		
 		page = page == null ? "1" : page; //page 파라미터가 없으면 1페이지 출력

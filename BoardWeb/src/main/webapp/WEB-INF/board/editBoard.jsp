@@ -1,4 +1,3 @@
-<%@page import="com.yedam.vo.BoardVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -9,7 +8,7 @@
 	</c:when>
 	<c:otherwise>
 		<h3>수정화면</h3>
-		<form action="updateBoard.do?page=${page }" method="post">
+		<form action="updateBoard.do" method="post">
 
 			<table class="table">
 				<tr>
