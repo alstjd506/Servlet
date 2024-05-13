@@ -5,7 +5,7 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="my" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<jsp:include page="../includes/header.jsp"></jsp:include>
+
 <style>
 .center {
   text-align: center;
@@ -35,6 +35,26 @@
 </style>
 
 <h3>게시글 목록</h3>
+<div class="center">
+	<form action="">
+		<div class="row">
+			<div class="col-sm-4">
+				<select name = "searchCondition" class="form-control">
+					<option value = "">선택하세요</option>
+					<option value="T" ${searchCondition == 'T' ? 'selected' :''}>제목</option>
+           			<option value="W" ${searchCondition == 'W' ? 'selected' :''}>작성자</option>
+           			<option value="TW" ${searchCondition == 'TW' ? 'selected' :''}>제목 & 작성자</option>
+				</select>
+			</div>
+			<div class="col-sm-2">
+				<input type ="text" name = "keyword" value= "${keyword }"class="form-control">
+			</div>
+			<div class="col-sm-2">
+				<input type="submit" value="조회" class="btn btn-primary">
+			</div>
+		</div>
+	</form>
+</div>
 
 <table class="table">
    <thead>
@@ -50,7 +70,7 @@
       <c:forEach var="board" items="${boardList}">
       <tr>
          <td>${board.boardNo} </td>
-         <td><a href="boardInfo.do?bno=${board.boardNo}&page=${paging.page} ">${board.title}</a></td>
+         <td><a href="boardInfo.do?bno=${board.boardNo}&page=${paging.page}&keyword=${keyword }&searchCondition=${searchCondition } ">${board.title}</a></td>
          <td>${board.writer}</td>
          <td><fmt:formatDate value="${board.createDate}" pattern="yyyy-MM-dd HH:mm:ss" /></td>
          <td>${board.viewCnt}</td>
@@ -62,4 +82,4 @@
 
 <my:paging pageInfo="${paging }"/>
 
-<jsp:include page="../includes/footer.jsp"></jsp:include>
+

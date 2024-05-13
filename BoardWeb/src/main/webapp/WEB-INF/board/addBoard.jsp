@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<jsp:include page="../includes/header.jsp"></jsp:include>
+
 
 <form action="addBoard.do" method="post" enctype="multipart/form-data">
 	
@@ -29,7 +29,6 @@
 		<tr align=center>
 			<td colspan="2"><input type="submit"></td>
 		</tr>
-
 	</table>
+
 </form>
-<jsp:include page="../includes/footer.jsp"></jsp:include>

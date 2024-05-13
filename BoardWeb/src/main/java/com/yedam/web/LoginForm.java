@@ -15,6 +15,7 @@ public class LoginForm implements Control {
 		// TODO Auto-generated method stub
 
 		String path = "WEB-INF/member/loginForm.jsp";
+		path = "member/loginForm.tiles";
 		req.getRequestDispatcher(path).forward(req, resp);
 	}
 

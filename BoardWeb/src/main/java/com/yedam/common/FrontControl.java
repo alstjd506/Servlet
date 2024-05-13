@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.web.AddBoardControl;
 import com.yedam.web.AddFromControl;
+import com.yedam.web.AddReplyControl;
 import com.yedam.web.BoardInfoControl;
 import com.yedam.web.LoginControl;
 import com.yedam.web.LoginForm;
@@ -21,22 +22,20 @@ import com.yedam.web.ModifyControl;
 import com.yedam.web.ModifyFormControl;
 import com.yedam.web.RemoveControl;
 import com.yedam.web.RemoveFormControl;
+import com.yedam.web.RemoveReplyControl;
+import com.yedam.web.ReplyListControl;
 
 public class FrontControl extends HttpServlet {
-
 	Map<String, Control> map;
-
 	// 생성자
 	public FrontControl() {
 		map = new HashMap<>();
-
 	}
-
 	// init
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		map.put("/main.do", new MainControl());
-		map.put("/addFrom.do", new AddFromControl()); //글등록화면.
+		map.put("/addForm.do", new AddFromControl()); //글등록화면.
 		map.put("/addBoard.do", new AddBoardControl());
 		map.put("/boardInfo.do", new BoardInfoControl());
 		
@@ -54,6 +53,12 @@ public class FrontControl extends HttpServlet {
 		
 		//로그아웃
 		map.put("/logout.do", new LogoutControl());
+		
+		//댓글관련.
+		map.put("/replyList.do", new ReplyListControl());
+		map.put("/removeReply.do", new RemoveReplyControl());
+		map.put("/addReply.do", new AddReplyControl());
+			
 	}
 
 	// service

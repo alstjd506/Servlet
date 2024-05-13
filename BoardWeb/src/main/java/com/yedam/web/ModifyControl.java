@@ -1,6 +1,7 @@
 package com.yedam.web;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -21,8 +22,12 @@ public class ModifyControl implements Control {
 		String title = req.getParameter("title");
 		String content = req.getParameter("content");
 		String page = req.getParameter("page");
+		
+		String sc = req.getParameter("serachCondition");
+		String kw = req.getParameter("keyword");
 				
 		BoardService svc = new BoardServiceImpl();
+		String encodeKW = URLEncoder.encode(kw, "UTF-8");
 		BoardVO vo = new BoardVO();
 		vo.setBoardNo(Integer.parseInt(bno));
 		vo.setTitle(title);
@@ -30,7 +35,7 @@ public class ModifyControl implements Control {
 		
 		if(svc.modifyBoard(vo)) {
 			System.out.println("성공");
-			resp.sendRedirect("main.do?page="+page);
+			resp.sendRedirect("main.do?page="+page+"&serachCondition=" + sc + "&keyword=" + encodeKW );
 		}else {
 			System.out.println("실패");
 			resp.sendRedirect("modBardForm.do");

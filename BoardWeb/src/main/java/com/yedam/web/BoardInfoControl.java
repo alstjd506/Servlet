@@ -20,15 +20,21 @@ public class BoardInfoControl implements Control {
 		String bno = req.getParameter("bno");
 		String page = req.getParameter("page");
 		
+		String sc = req.getParameter("serachCondition");
+		String kw = req.getParameter("keyword");
+		
 		BoardService svc = new BoardServiceImpl();
 		BoardVO vo = svc.getBoard(Integer.parseInt(bno)); //조회가능.
 		svc.addViewCnt(Integer.parseInt(bno)); //조회 카운트 증가.
 		
 		req.setAttribute("result", vo);
 		req.setAttribute("page", page);
+		req.setAttribute("searchCondition", sc);
+		req.setAttribute("keyword", kw);
 			
 		
 		String path = "WEB-INF/board/board.jsp";
+		path = "board/board.tiles";
 		req.getRequestDispatcher(path).forward(req, resp);
 		
 	}
