@@ -16,25 +16,27 @@ public class LoginControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//id, pw 파라미터. 
+		// id, pw 파라미터.
 		String id = req.getParameter("id");
 		String pw = req.getParameter("pw");
-		
+
 		BoardService svc = new BoardServiceImpl();
 		MemberVO mvo = svc.login(id, pw);
-		
-		if(mvo != null) {
+
+		if (mvo != null) {
 			HttpSession session = req.getSession();
 			session.setAttribute("logId", mvo.getUserId());
-			
-			resp.sendRedirect("main.do");
-			
-		}else {
+
+			// 관리자, 회원.
+			if (mvo.getUserResp().equals("Admin")) {
+				resp.sendRedirect("memberList.do");
+			}else {
+				resp.sendRedirect("main.do");
+			}
+		} else {
 			resp.sendRedirect("logForm.do");
 		}
-		
-		
-		
+
 	}
 
 }

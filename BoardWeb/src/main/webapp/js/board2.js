@@ -1,5 +1,5 @@
 /**
- * 
+ *  공부용
  */
 // 수정버튼
 document.querySelector("#modBtn").addEventListener('click', function() {
@@ -25,33 +25,33 @@ function showList() {
 			li.remove();
 		}
 	})
-	svc.replyList({ bno: bno, page: rpage },
-		result => {
+
+	fetch('replyList.do?bno=' + bno + '&rpage=' + rpage)
+		.then(resolve => resolve.json())
+		.then(result => {
 			console.log(result);
 			result.forEach(reply => {
 				const row = makeRow(reply);
 				document.querySelector('div.reply ul').appendChild(row);
 
 			})
-			makePageInfo();
-		},// 두번쨰 param.
-		err => {
+			createPageList();
+		})
+		.catch(err => {
 			console.log(err);
-		} // 세번쨰 param
-	)//end of replyList
-
-}//목록 출력
+		})
+}
 
 
-//삭제버튼
 function deleteRow(e) {
 	console.log(e);
 	const rno = e.target.parentElement.parentElement.dataset.rno;
 	const replyer = e.target.parentElement.parentElement.dataset.replyer;
 	console.log(replyer);
 	if (writer == replyer) {
-		svc.removeReply(rno,
-		result => {
+		fetch('removeReply.do?rno=' + rno)
+			.then(resolve => resolve.json())
+			.then(result => {
 				if (result.retCode == 'OK') {
 					alert('삭제완료');
 					//e.target.parentElement.parentElement.remove();
@@ -62,11 +62,11 @@ function deleteRow(e) {
 				} else {
 					alert('알수없는 반환값');
 				}
-			},
-			err => console.log(err))
-		}else{
-			alert('다른사람의 댓글을 삭제할 수 없습니다')		
-		}
+			})
+			.catch(err => console.log(err))
+	} else {
+		alert('다른사람의 댓글을 삭제할 수 없습니다')
+	}
 }
 
 document.getElementById('addReply').addEventListener('click', function(e) {
@@ -80,8 +80,9 @@ document.getElementById('addReply').addEventListener('click', function(e) {
 		alert('댓글 내용을 입력하세요');
 		return;
 	}
-	svc.addReply({bno: bno, replyer: writer, reply:reply},
-	result => {
+	fetch('addReply.do?bno=' + bno + '&replyer=' + writer + '&reply=' + reply)
+		.then(resolve => resolve.json())
+		.then(result => {
 			if (result.retCode == 'OK') {
 				//location.reload();
 				const row = makeRow(result.retVal);
@@ -89,9 +90,8 @@ document.getElementById('addReply').addEventListener('click', function(e) {
 				//댓글초기화
 				document.querySelector('reply').value = "";
 			}
-	}),
-		err => console.log(err);
-
+		})
+		.catch(err => console.log(err));
 });
 
 //row 생성.
@@ -110,18 +110,8 @@ function makeRow(reply = {}) {
 //페이징 생성.
 let pagination = document.querySelector('div.pagination');
 
-function makePageInfo(){
-	svc.getTotalCount(bno,
-		createPageList	//성공햇을떄 실행할 함수
-		),
-		err => console.log(err);
-}
-
-
-function createPageList(result) {
-	console.log(result);
-
-	let totalCnt = result.totalCount;
+function createPageList() {
+	let totalCnt = 127;
 	let startPage, endPage, realEnd;
 	let prev, next;
 

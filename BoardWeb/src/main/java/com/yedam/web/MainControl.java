@@ -15,6 +15,7 @@ import com.yedam.service.BoardServiceImpl;
 import com.yedam.vo.BoardVO;
 import com.yedam.common.Control;
 import com.yedam.common.DataSource;
+import com.yedam.common.HttpUtils;
 import com.yedam.common.PageDTO;
 import com.yedam.common.SearchVO;
 
@@ -47,8 +48,8 @@ public class MainControl implements Control {
 		req.setAttribute("searchCondition", sc);
 		req.setAttribute("keyword", kw);
 		
-		req.getRequestDispatcher(path).forward(req, resp);
-
+		//req.getRequestDispatcher(path).forward(req, resp);
+		HttpUtils.forword(req, resp, path);
 	}
 
 }
