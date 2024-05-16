@@ -24,7 +24,7 @@ public class ReplyListControl implements Control {
 		resp.setContentType("text/json;charset=utf-8");
 		
 		String bno = req.getParameter("bno");
-		String rpage = req.getParameter("rpage");
+		String rpage = req.getParameter("page");
 		
 		//rpage값이 null이면 1페이지
 		rpage = rpage == null ? "1" : rpage;

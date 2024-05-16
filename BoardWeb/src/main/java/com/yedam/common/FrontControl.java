@@ -21,6 +21,7 @@ import com.yedam.web.MainControl;
 import com.yedam.web.MemberListControl;
 import com.yedam.web.ModifyControl;
 import com.yedam.web.ModifyFormControl;
+import com.yedam.web.ModifyReplyControl;
 import com.yedam.web.ProductListControl;
 import com.yedam.web.RemoveControl;
 import com.yedam.web.RemoveFormControl;
@@ -62,6 +63,7 @@ public class FrontControl extends HttpServlet {
 		map.put("/removeReply.do", new RemoveReplyControl());
 		map.put("/addReply.do", new AddReplyControl());
 		map.put("/getTotalCnt.do", new TotalCountControl());
+		map.put("/modifyReply.do", new ModifyReplyControl());
 		
 		
 		//관리자권한.

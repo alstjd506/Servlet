@@ -44,4 +44,10 @@
 		values(#{replyNo}, #{reply}, #{replyer}, #{boardNo})
 	</insert> 
 	
+	<update id="modifyReply" parameterType="ReplyVO">
+		update tbl_replyes
+		set reply= #{reply}
+		where reply_no = #{replyNo}
+	</update>
+	
 </mapper>

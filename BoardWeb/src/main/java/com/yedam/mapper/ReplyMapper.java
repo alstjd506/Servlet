@@ -18,4 +18,7 @@ public interface ReplyMapper {
 	//댓글갯수
 	int replyTotalCnt(int boardNo);
 	
+	//댓글 수정
+	int modifyReply(ReplyVO rvo);
+	
 }

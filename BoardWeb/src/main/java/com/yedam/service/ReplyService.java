@@ -10,6 +10,7 @@ public interface ReplyService {
 	boolean removeReply(int replyNo);
 	boolean addReply(ReplyVO reply);
 	int TotalCount(int boardNo);
+	boolean modifyReply(ReplyVO reply);
 	
 	
 }

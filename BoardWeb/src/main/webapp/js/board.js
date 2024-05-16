@@ -55,6 +55,7 @@ function deleteRow(e) {
 				if (result.retCode == 'OK') {
 					alert('삭제완료');
 					//e.target.parentElement.parentElement.remove();
+					
 					showList();
 
 				} else if (result.retCode == 'NG') {
@@ -80,17 +81,26 @@ document.getElementById('addReply').addEventListener('click', function(e) {
 		alert('댓글 내용을 입력하세요');
 		return;
 	}
-	svc.addReply({bno: bno, replyer: writer, reply:reply},
+	svc.addReply({bno: bno, writer: writer, reply:reply},
 	result => {
 			if (result.retCode == 'OK') {
 				//location.reload();
 				const row = makeRow(result.retVal);
 				document.querySelector('div.reply ul').appendChild(row);
 				//댓글초기화
-				document.querySelector('reply').value = "";
+				document.querySelector('#reply').value = "";
+				
+				svc.getTotalCount(bno, 
+				result => {
+					let totalCnt = result.totalCount;
+					let realEnd = Math.ceil(totalCnt / 5);
+					rpage = realEnd;
+					showList();
+				},
+				err => console.log(err));
 			}
-	}),
-		err => console.log(err);
+	},
+		err => console.log(err));
 
 });
 
