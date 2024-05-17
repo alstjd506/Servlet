@@ -50,4 +50,20 @@
 		where reply_no = #{replyNo}
 	</update>
 	
+	<select id="selectList" resultType="cart">
+		select *
+		from tbl_cart
+		order by no
+	</select>
+	
+	<update id ="updateCart" parameterType="cart">
+		update tbl_cart
+		set qty = qty + #{qty}
+		where no = #{no}
+	</update>
+	
+	<delete id="deleteCart" parameterType = "int">
+		delete from tbl_cart
+		where no = #{no}
+	</delete>
 </mapper>
